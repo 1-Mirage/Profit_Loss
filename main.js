@@ -1,42 +1,38 @@
 
-var initialPrice = document.querySelector("#initial-price");
-var stocksQuantity = document.querySelector("#stocks-quantity");
-var currentPrice = document.querySelector("#current-price");
-var submitBtn = document.querySelector("#submit-btn");
-var outputBox = document.querySelector("#output-box");
+var initialPrice = document.getElementById("initial-price");
+var stocksQuantity = document.getElementById("stocks-quantity");
+var currentPrice = document.getElementById("current-price");
+var submitBtn = document.getElementById("submit-btn");
+var outputBox = document.getElementById("output-box");
 
 
-submitBtn.addEventListener("click", submitHandler);
 
-function submitHandler() {
+
+function calculate() {
   var ip = Number(initialPrice.value);
   var qty = Number(stocksQuantity.value);
   var curr = Number(currentPrice.value);
 
-  calculateProfitAndLoss(ip, qty, curr);
-}
-
-
-function calculateProfitAndLoss(initial, quantity, current) {
-  if (initial > current) {
-    var loss = (initial - current) * quantity;
-    var lossPercentage = (loss / initial) * 100;
-
-    showOutput(
-      `Hey, the loss is ${loss} and the percent is ${lossPercentage}%`
-    );
-  } else if (current > initial) {
-    var profit = (current - initial) * quantity;
-    var profitPercentage = (profit / initial) * 100;
-
-    showOutput(
-      `Hey, the profit is ${profit} and the percent is ${profitPercentage}%`
-    );
-  } else {
-    showOutput(`No pain no gain and no gain no pain`);
+  let message="";
+  if(ip<curr)
+  {
+    let profit=(curr-ip)*qty;
+    let profitpercent=(profit/ip)*100;
+    message=`The profit is ${profit} and the percent is ${profitpercent}%`;
   }
+  else if(ip>curr)
+  {
+    let loss=(ip-curr)*qty;
+    let losspercent=(loss/ip)*100;
+    message=`The loss is ${loss} and the percent is ${losspercent}%`
+  }
+  else
+  {
+     message="No profit or loss";
+  }
+  outputBox.innerHTML=message;
 }
 
-function showOutput(message) {
-  outputBox.innerHTML = message;
-}
+
+
+submitBtn.addEventListener("click", calculate);
