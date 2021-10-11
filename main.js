@@ -18,13 +18,13 @@ function calculate() {
   {
     let profit=(curr-ip)*qty;
     let profitpercent=(profit/ip)*100;
-    message=`The profit is ${profit} and the percent is ${profitpercent}%`;
+    message=`The profit is ${Math.abs(profit)} and the percent is ${Math.abs(profitpercent)}%`;
   }
   else if(ip>curr)
   {
     let loss=(ip-curr)*qty;
     let losspercent=(loss/ip)*100;
-    message=`The loss is ${loss} and the percent is ${losspercent}%`
+    message=`The loss is ${Math.abs(loss)} and the percent is ${Math.abs(losspercent)}%`
   }
   else
   {
