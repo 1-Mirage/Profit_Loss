@@ -16,7 +16,10 @@ function calculate() {
   {
     reloadpage();
     alert("Please fill out all Fields");
+    return;
   }
+  else
+  {
 
   var ip = Number(initialPrice.value);
   var qty = Number(stocksQuantity.value);
@@ -43,6 +46,7 @@ function calculate() {
      message="No profit or loss";
   }
   outputBox.innerHTML=message;
+}
 }
 
 
